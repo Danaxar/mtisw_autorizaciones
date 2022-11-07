@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @RequestMapping("/autorizacion")
 public class AutorizacionController {
     @Autowired
-    private AutorizacionService autorizacionService;
+    AutorizacionService autorizacionService;
 
     @GetMapping("/listar")
     public ResponseEntity<ArrayList<AutorizacionEntity>> getAll(){
