@@ -20,12 +20,22 @@ public class AutorizacionService {
         return autorizacionRepository.save(justificativo);
     }
 
-    public boolean exists(String fecha, String rut){
+    public boolean existeAutorizacion(String fecha, String rut){
         ArrayList<AutorizacionEntity> autorizacion = autorizacionRepository.findByFechaAndRut(fecha, rut);
         if(autorizacion.size() == 1){
             return true;
         }else{
             return false;
         }
+    }
+
+    public String reformatFecha(String fecha){
+        String[] divisiones = fecha.split("/");
+        if(divisiones.length == 1){  // Tiene formato de guión
+            String[] divisiones2 = fecha.split("-");
+            return (divisiones2[0] + "/" + divisiones2[1] + "/" + divisiones2[2]);
+        }
+        return (divisiones[0] + "-" + divisiones[1] + "-" + divisiones[2]);
+
     }
 }

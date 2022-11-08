@@ -33,4 +33,14 @@ public class AutorizacionController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/get-by-rut-and-fecha/{rut}/{fecha}")
+    public ResponseEntity<Boolean> getByRutAndFecha(@PathVariable("rut") String rut, @PathVariable("fecha") String fecha){
+        Boolean resp = autorizacionService.existeAutorizacion(autorizacionService.reformatFecha(fecha), rut);
+        if(resp){
+            return ResponseEntity.ok(resp);    
+        }
+        return ResponseEntity.ok(resp); // false
+        
+    }
 }
