@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-
+// Server port: 8082
 @RestController
 @RequestMapping("/autorizacion")
 public class AutorizacionController {
@@ -36,6 +36,7 @@ public class AutorizacionController {
 
     @GetMapping("/get-by-rut-and-fecha/{rut}/{fecha}")
     public ResponseEntity<Boolean> getByRutAndFecha(@PathVariable("rut") String rut, @PathVariable("fecha") String fecha){
+        System.out.println("Aqui 2");
         Boolean resp = autorizacionService.existeAutorizacion(autorizacionService.reformatFecha(fecha), rut);
         if(resp){
             return ResponseEntity.ok(resp);    
